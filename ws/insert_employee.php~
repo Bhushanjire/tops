@@ -1,0 +1,24 @@
+<?php
+//http://localhost/OTHER/Angularjs/ws/insert_employee.php?name=test&mobile=7777777777&email=test@gmail.com
+require('config.php');
+
+$result = array();
+if(isset($_REQUEST['name'])){
+$name = $_REQUEST['name'];
+$mobile = $_REQUEST['mobile'];
+$email = $_REQUEST['email'];
+
+	$query = "INSERT INTO employee(name,mobile,email) VALUES('".$name."','".$mobile."','".$email."')";
+	$res = mysql_query($query) or(die(mysql_error()));
+
+	if($res){
+		$result['error_success'] = "Record inserted";
+	
+}else{
+$result['error_success'] = "Record not inserted";
+	}
+
+echo json_encode($result);	
+
+}
+
